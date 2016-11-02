@@ -1,0 +1,47 @@
+group 'com.mmachado'
+version '1.0-SNAPSHOT'
+
+project.ext {
+    aspectjVersion = '1.8.9'
+}
+
+apply plugin: 'application'
+apply plugin: 'aspectj'
+
+mainClassName = 'com.mmachado.Main'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenCentral()
+}
+
+buildscript {
+    repositories {
+        maven {
+            url 'https://maven.eveoh.nl/content/repositories/releases'
+        }
+    }
+
+    dependencies {
+        classpath 'nl.eveoh:gradle-aspectj:1.6'
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java', 'src/aspects/java']
+        }
+    }
+
+    aspects {
+        java {
+        }
+    }
+}
